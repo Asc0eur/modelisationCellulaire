@@ -33,8 +33,9 @@ public class LifeGame {
         //Pour commencer a l'etape 1
         int i = 1;
         
-        System.out.println("Configuration Initiale : \n" + c);   
+        String recap = "Les étapes qui se répétent sont : ";
         
+        System.out.println("Configuration Initiale : \n" + c);
         System.out.println("Modelisation pour 100 itérations :");
         while(i < 101){
         	if(c.areDead()){
@@ -43,14 +44,25 @@ public class LifeGame {
         	}
         	System.out.print("Etape " + i + " : ");
         	c.newLine();
+        	
+        	for(int j = 0; j < life.size(); j++){
+        		if((c.getCell()[0] == life.get(j)[0]) && (c.getCell()[1] == life.get(j)[1]) && (c.getCell()[2] == life.get(j)[2])
+        				&& (c.getCell()[3] == life.get(j)[3]) && (c.getCell()[4] == life.get(j)[4]) && (c.getCell()[5] == life.get(j)[5])
+        				&& (c.getCell()[6] == life.get(j)[6]) && (c.getCell()[7] == life.get(j)[7])){
+        			recap += "E" + i + " & E" + j + "\n";
+        		}
+        	}
+        	
         	life.add(c.getCell());
         	i++;
         }
-        
-        for (int[] number : life) {
+        System.out.println(recap);
+        //Contenu de la liste
+       /** for (int[] number : life) {
         	   System.out.println(number[0] + "," + number[1] + "," + number[2] + "," + number[3]
         			   		+ "," + number[4] + "," + number[5] + "," + number[6] + "," + number[7]);
         }
+        */
     }
 
 }
