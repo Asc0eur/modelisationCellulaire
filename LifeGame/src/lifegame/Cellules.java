@@ -1,10 +1,11 @@
 package lifegame;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * @author Vincent, Camille
+ * @author Vincent, Camille, Clément
  * Classe Cellules
  * S'occupe de la gestion du comportement des cellules
  */
@@ -48,13 +49,7 @@ public class Cellules {
             } else
                 tab_binaire[j] = 0;
         }
-/**
- *
- * int j = 0; for (int in = 7; in > (7-tab_binaire.length); in--) {
- * tab_binaire[in] = Character.getNumericValue(binaire.charAt(j)); j++; } for
- * (int k = 0; k < j; k++) { tab_binaire[k] = 0; }
-        *
- */
+
         System.out.println("Code : " + Arrays.toString(tab_binaire));
         t[0][0][0] = tab_binaire[0];
         t[0][0][1] = tab_binaire[1];
@@ -76,6 +71,7 @@ public class Cellules {
     public void newLine() {
         int cell1[]= new int[8];
         System.arraycopy(cell, 0, cell1, 0, 8);
+        setCell(cell1); //MAJ des cellules dans l'attribut
         for (int i = 0; i < 8; i++) {
             
             if (i == 0) {
@@ -92,10 +88,11 @@ public class Cellules {
             //System.out.println(" =  "+ cell1[i]);
         }
         System.arraycopy(cell1, 0, cell, 0, 8);
+        setCell(cell1);	//MAJ des cellules dans l'attribut
         System.out.println(this);
     }
 
-    @Override
+	@Override
         public String toString() {
         return Arrays.toString(cell);
     }
@@ -131,7 +128,20 @@ public class Cellules {
     		rep = true;
     	return rep;
     }
-    
-    
+   
+    /**
+     * Getter de l'attribut cell
+     * @return	int[]	le tableau de cellules
+     */
+    public int[] getCell() {
+		return cell;
+	}
 
+    /**
+     * Setter de l'attribut cell
+     * @param cell	le nouveau tableau de cellules
+     */
+	public void setCell(int[] cell) {
+		this.cell = cell;
+	}
 }
