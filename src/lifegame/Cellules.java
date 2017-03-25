@@ -80,7 +80,7 @@ public class Cellules {
                 
             } else if (i == 7) {
                 //System.out.print(cell[i-1]+"|"+cell[7]+"|"+cell[0]);
-                cell1[i] = t[cell[i - 1]] [cell[7]] [0];
+                cell1[i] = t[cell[i - 1]] [cell[7]] [cell[0]];
             } else{
                 //System.out.print(cell[i-1]+"-"+cell[0]+"-"+cell[i+1]);
                 cell1[i] = t[cell[i - 1]] [cell[i]] [cell[i + 1]];
