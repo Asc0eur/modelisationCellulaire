@@ -18,7 +18,7 @@ public class Cellules {
     /**Le tableau de conversion binaire*/
     int tab_binaire[] = new int[8];
     /**Le tableau de cellules*/
-    int cell[] = new int[8];
+    private int cell[];
 
     	//CONSTRUCTEUR
     
@@ -69,25 +69,28 @@ public class Cellules {
      * Permet d'afficher une nouvelle ligne de cellules
      */
     public void newLine() {
-        int cell1[]= new int[8];
-        System.arraycopy(cell, 0, cell1, 0, 8);
+    	//Nombre de cellules par ligne
+    	int taille = this.cell.length;
+    	
+        int cell1[]= new int[taille];
+        System.arraycopy(cell, 0, cell1, 0, taille);
         setCell(cell1); //MAJ des cellules dans l'attribut
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < taille; i++) {
             
             if (i == 0) {
                 //System.out.print(cell[7]+","+cell[0]+","+cell[1]);
-                cell1[i] = t[cell[7]] [cell[0]] [cell[1]];
+                cell1[i] = t[cell[taille - 1]] [cell[0]] [cell[1]];
                 
-            } else if (i == 7) {
+            } else if (i == (taille - 1)) {
                 //System.out.print(cell[i-1]+"|"+cell[7]+"|"+cell[0]);
-                cell1[i] = t[cell[i - 1]] [cell[7]] [cell[0]];
+                cell1[i] = t[cell[i - 1]] [cell[taille - 1]] [cell[0]];
             } else{
                 //System.out.print(cell[i-1]+"-"+cell[0]+"-"+cell[i+1]);
                 cell1[i] = t[cell[i - 1]] [cell[i]] [cell[i + 1]];
             }
             //System.out.println(" =  "+ cell1[i]);
         }
-        System.arraycopy(cell1, 0, cell, 0, 8);
+        System.arraycopy(cell1, 0, cell, 0, taille);
         setCell(cell1);	//MAJ des cellules dans l'attribut
         System.out.println(this);
     }
@@ -119,14 +122,31 @@ public class Cellules {
     public boolean areDead(){
     	boolean rep = false;
     	int cpt = 0;
-    	for(int i = 0; i < 8; i++){
+    	for(int i = 0; i < this.cell.length; i++){
         	if(this.cell[i] == 0)
         		cpt ++;	//on incremente le compteur de chaque cellule a 0
     	}
     	//Si toutes les cellules sont a 0, alors elles sont toutes mortes
-    	if(cpt == 8)
+    	if(cpt == this.cell.length)
     		rep = true;
     	return rep;
+    }
+    
+    /**
+     * Methode mutation
+     * Incorpore une mutation sur une des cellules de la ligne, aleatoirement
+     * Inverse la valeur de la case aleatoirement choisie
+     */
+    public void mutation(){
+    	int random = (int)(Math.random() * (this.cell.length - 1));
+    	if(this.cell[random] == 0){
+    		this.cell[random] = 1;
+    	} else if(this.cell[random] == 1){
+    		this.cell[random] = 0;
+    	}
+    	random ++; //pour avoir le numero correspondant si on compte a partir de 1 et pas de 0
+    	System.out.println("Mutation de la cellule numéro " + random);
+    	System.out.println("Etape mutée " + this);
     }
    
     /**
